@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ sitename }}
+{% endblock title %}
+{% block content %}
+<style>
+    .profile-pic{
+        max-width: 200px;
+        max-height: 200px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+</style>
+
+    <div class="container">
+    <h3 class="text-center my-5">Edit Your Profile {{request.user}}</h3>
+    </div>
+    <div class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body">
+                <h3 class="text-center">Account Setting</h3>
+                <img class="img-fluid my-5 profile-pic" src="{{request.user.customer.img.url}}" alt="">
+                
+                <a class="btn btn-primary" href="{% url 'change_password' %}">Change Password</a>
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card card-body">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input class="btn btn-success" type="submit" name="Update Information">
+                </form> 
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

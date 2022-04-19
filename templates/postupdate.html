@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    Update Announcement 
+{% endblock title %}
+     
+{% block content %}
+    <div class="container">
+        <div class="row py-5">
+            <div class="col-md-12">
+                {% if post.user.id == user.id %}
+                <h2 class="text-center">Update Your Announcement</h2>
+                <hr>
+                <br>
+                <form class="form-group" method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-primary" type="submit">SAVE</button>
+                </form>
+                {% else %}
+                <h2 class="text-center">You are not allowed to update this Announcement</h2>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

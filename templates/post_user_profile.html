@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    User Profile
+{% endblock title %}
+{% block content %}
+<div class="container">
+</div>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-body">
+                <img class="img-fluid my-3 profile-pic" src="{{ user.customer.img.url}}" alt="">
+                <p class="lead text-center font-weight-bold">{{user.first_name}} {{user.last_name}}</p>
+                <a class="btn btn-primary" href="">CONTACT NOW</a>
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body">
+                <h4 class="text-center">Posts by this user</h4>
+                <hr>
+                <ul class="list-group">
+                    {% for post in post %}
+                    {% if post.user.id == user.id %}
+                    <li class="my-md-2 list-group-item">
+                        <article class="media content-section">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="media-body mr-5">
+                                        <div class="article-metadata">
+                                            <img class="img-fluid img-thumbnail mr-5 article-img" id="user_img" src="{{ post.user.customer.img.url }}" alt=""><br>
+                                            <a class="mr-2" href="">{{ post.user }}</a>
+                                            <small class="text-muted">{{ post.date_created|date:"F d, Y" }}</small>
+                                        </div>
+                                        <h2><a class="article-title" href="{% url 'PostDetail' post.pk %}">{{ post.title }}</a></h2>
+                                        <p class="article-content lead">{{ post.body | slice:":100" }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <img class="img-fluid p-1 article-img" id="post_img" src="{{ post.photo.url }}" alt="">
+                                </div>      
+                            </div>
+                        </article>
+                    </li>
+                    {% endif %}                            
+                    {% endfor %}
+                </ul>  
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

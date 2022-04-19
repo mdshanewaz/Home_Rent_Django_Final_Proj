@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    CHILEKOTHA | FIND
+{% endblock title %}
+     
+{% block content %}
+<section id="find" class="text-center py-5 text-light">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-light mt-5">Find Your Home Now</h2>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, saepe.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body my-5 py-3 border">
+                    <form class="form-group" method="GET" action="">
+                        {{ filter.form }}
+                        <button class="btn btn-primary my-3" type="submit">SEARCH NOW</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="list-group">
+                    {% for post in filter.qs %}
+                    <li class="mt-3 mb-5 list-group-item">
+                        <article class="media content-section">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="media-body mr-5">
+                                        <div class="article-metadata">
+                                            <img class="img-fluid img-thumbnail mr-5 article-img" id="user_img" src="{{ post.user.customer.img.url }}" alt=""><br>
+                                            {% if post.user.id == user.id %}
+                                                <a class="mr-2" href="{% url 'Profile' %}">{{ post.user }}</a>
+                                            {% else %}
+                                                <a class="mr-2" href="{% url 'PostUserProfile' post.user.id %}">{{ post.user }}</a>
+                                            {% endif %}
+                                            <small class="text-muted">{{ post.date_created|date:"F d, Y" }}</small>
+                                        </div>
+                                        <h2><a class="article-title" href="{% url 'PostDetail' post.pk %}">{{ post.title }}</a></h2>
+                                        <p class="article-content lead">{{ post.body | slice:":200" }}</p>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <p>Price: {{ post.price }} Taka</p> 
+                                         </div>
+                                         <div class="col-md-4">
+                                            <p>Rent To: {{ post.rent_for }} </p> 
+                                         </div>
+                                         <div class="col-md-4">
+                                            <p>Location: {{ post.location }} </p> 
+                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <img class="img-fluid ml-mb-5 article-img" id="post_img" src="{{ post.photo.url }}" alt="">
+                                </div>      
+                            </div>
+                        </article>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

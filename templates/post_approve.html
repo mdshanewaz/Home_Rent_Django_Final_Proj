@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ sitename }}
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-4"> 
+            <div class="card card-body">
+                <h3 class="text-center"></h3>
+                <hr>
+                <p class="lead text-center">Admin <span class="text-success font-weight-bold">{{request.user}}</span></p>
+                <a class="btn btn-primary mt-5" href="{% url 'admin_dash' %}">BACK TO DASHBOARD</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

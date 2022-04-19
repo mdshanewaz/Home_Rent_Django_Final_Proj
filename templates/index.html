@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/">
+    <title>
+        {% block title%} {% endblock title %}
+    </title>
+    <link rel="shortcut icon" href="{%static 'img/infinity.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.13.0-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    <div>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <div class="contain bg-dark">
+        {% include 'footer.html' %}
+    </div>
+    
+    <script src="{% static 'js/jquery.min.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/popper.min.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" charset="utf-8"></script>
+</body>
+</html>

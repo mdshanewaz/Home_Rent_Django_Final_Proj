@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    CHILEKOTHA | ABOUT
+{% endblock title %}
+     
+{% block content %}
+<div class="container my-5">
+    <div class=" d-flex flex-row py-4">
+        <div class="about-section d-flex">
+            <div class="col-md-5 .d-none .d-lg-block mt-lg-5 ">
+                <img src="img/building1.png" class="img-fluid" alt="image">
+            </div>
+            <div class="col-md-1 vertical-line justify-content-between"style="border-left:5px solid #00545d;
+            height:480px;
+            position:relative;
+            top:30px;"></div>
+            <div class="col-md-6 col-sm-12 about-text py-3 px-3" >
+                <div class="inner-container " >
+                  <h3 class="text-center text-uppercase">About Us</h3>
+                  <hr>
+                    <p class="font-weight-bold text-justify">
+                    Nowadays, it is extremely difficult to find suitable accommodation in city areas if people search for it physically. 
+                    On the other hand, the landlord also needs to rent the house. It can be difficult to find tenants just by hanging a lease sign on a building, and as a result, they lose money.
+                     Moreover, this problem turns into terrible form when bachelor’s want to find a home as their choice. An online common platform can play a vital role in this case. 
+                     The purpose of the website is to develop a common web-based online platform for both tenants and house owners so that both tenants and landowners will mutually benefit from the system.
+                    </p>
+                    <div class=" rounded-right text-center">
+                      <button style="padding: 10px 25px;
+                      border: 2px solid #005450;
+                      border-radius: 5px;
+                      color: black;
+                      text-decoration: none;
+                      margin: 30px 0;
+                      transition: all .5s ease;
+                      font-weight: 600;" class="btn text-uppercase py-2 px-4 contact-btn"><a href="{% url 'contact' %}"  class="">Contact Us</a></button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

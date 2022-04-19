@@ -1,0 +1,107 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ sitename }}
+{% endblock title %}
+     
+{% block content %}
+<div class="contain">
+    <div class="carousel slide" id="slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <ul class="carousel-indicators">
+                <li data-target="#slide" data-slide-to="0" class="active"></li>
+                <li data-target="#slide" data-slide-to="1"></li>
+                <li data-target="#slide" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-item carousel-img-1 active">
+                <div class="container">
+                    <div class="carousel-caption mb-3 mb-sm-5 pb-3 pb-sm-5">
+                        <h2 class="display-4 text-light">Home Rent Solution</h2>
+                        <p class="lead">A Modern Well-Planned Flat Of 2200 Sq Ft Is Up For Rent Is Situated In Pouro Bazar.The house is near by main road. And pouro Bazar is also 100 meter far from home.That,s why it would be great chnace for you ,so grab it.</p>
+                        <a class="btn btn-danger" href="{% url 'FindView' %}" type="button" name="button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item carousel-img-2">
+                <div class="container">
+                    <div class="carousel-caption mb-3 mb-sm-5 pb-3 pb-sm-5 text-right">
+                        <h2 class="display-4 text-light">Bachelor flat</h2>
+                        <p class="lead">This magnificent 1920 SQFT Flat which is in Sonapur is now in BDT 10000 for Rent. If you are looking for a peaceful area to live in then it will be the best choice for you.</p>
+                        <a class="btn btn-success" href="{% url 'FindView' %}" type="button" name="button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item carousel-img-3">
+                <div class="contain">
+                    <div class="carousel-caption mb-3 mb-sm-5 pb-3 pb-sm-5 text-left">
+                        <h2 class="display-4 text-light">Family flat</h2>
+                        <p class="lead">DescriptionDear Sir, 1500 sq-ftf Exclusive apartment available for rent in Hyperion Mojibur Tower. Hyperion Mojibur Tower has been built by Hyperion design & development ltd company and it is located in Maijdee Bazar.</p>
+                        <a class="btn btn-outline-light" href="{% url 'FindView' %}" type="button" name="button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#slide" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#slide" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-group">
+                {% for post in object_list %}
+                <li class="my-3 list-group-item">
+                    <article class="media content-section">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="media-body mr-5">
+                                    <div class="article-metadata">
+                                        <img class="img-fluid img-thumbnail mr-5 article-img" id="user_img" src="{{ post.user.customer.img.url }}" alt=""><br>
+                                        {% if post.user.id == user.id %}
+                                            <a class="mr-2" href="{% url 'Profile' %}">{{ post.user }}</a>
+                                        {% else %}
+                                            <a class="mr-2" href="{% url 'PostUserProfile' post.user.id %}">{{ post.user }}</a>
+                                        {% endif %}
+                                        <small class="text-muted">{{ post.date_created|date:"F d, Y" }}</small>
+                                    </div>
+                                    <h2><a class="article-title" href="{% url 'PostDetail' post.pk %}">{{ post.title }}</a></h2>
+                                    <p class="article-content lead">{{ post.body | slice:":200" }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <img class="img-fluid ml-mb-5 article-img" id="post_img" src="{{ post.photo.url }}" alt="">
+                            </div>      
+                        </div>
+                    </article>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="text-center border">
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info my-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info my-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info my-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info my-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info my-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-info my-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+            {% endif %}
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

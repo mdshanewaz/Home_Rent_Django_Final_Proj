@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ post.title }}
+{% endblock title %}
+     
+{% block content %}
+
+<div class="container my-5">
+    <div class="row border">
+        <div class="col-md-12">
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="row border">
+                        <div class="col-md-6">
+                            <h2 class="article-title">{{ post.title }}</h2>
+                        </div>
+                        <div class="col-md-6 text-right p-2">
+                            {% if post.user.id == user.id %}
+                            <a class="btn btn-warning" href="{% url 'PostUpdate' post.pk %}">Edit</a>
+                            <a class="btn btn-danger" href="{% url 'PostDelete' post.pk %}">Delete</a>
+                            {% elif request.user.is_staff == True %}
+                            <a class="btn btn-danger" href="{% url 'PostDelete' post.pk %}">Delete</a>
+                            {% else %}
+                            <a class="btn btn-success" href="{% url 'contact' %}">Contact Now</a>
+                            <a class="btn btn-primary" href="{% url 'PostReview' post.pk %}">Add Review</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                <div class="article-metadata mb-3">
+                    {% if post.user.id == user.id %}
+                        <a class="mr-2" href="{% url 'Profile' %}">{{ post.user }}</a>
+                    {% else %}
+                        <a class="mr-2" href="{% url 'PostUserProfile' post.user.id %}">{{ post.user }}</a>
+                    {% endif %}
+                    <small class="text-muted">{{ post.date_created|date:"F d, Y" }}</small>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="article-content lead">{{ post.body }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="img-fluid" src="{{ post.photo.url }}" alt="">
+                    </div>
+                </div>
+                
+                <div class="row mt-5 p-3">
+                    <div class="col-md-4 border">
+                       <p class="">Bed Room: {{ post.bed_room }} </p> 
+                    </div>
+                    <div class="col-md-4 border">
+                        <p class="">Wash Room: {{ post.wash_room }} </p> 
+                     </div>
+                     <div class="col-md-4 border">
+                        <p class="">Belcony: {{ post.belcony }} </p> 
+                     </div>
+                     <div class="col-md-4 border">
+                        <p class="">Drawing Room: {{ post.drawing_room }} </p> 
+                     </div>
+                     <div class="col-md-4 border">
+                        <p class="">Dyning Room: {{ post.dyning_room }} </p> 
+                     </div>
+                     <div class="col-md-4 border">
+                        <p class="">Location: {{ post.location }} </p> 
+                     </div>
+                     <div class="col-md-4 border">
+                        <p class="">Rent To: {{ post.rent_for }} </p> 
+                     </div>
+                     <div class="col-md-4 border">
+                        <p class="">Address: {{ post.address }} </p> 
+                     </div>
+                     <div class="col-md-4 border">
+                        <p class="">Price: {{ post.price }} Taka</p> 
+                     </div>
+                </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 border">
+            <h2 class="text-center">Reviews...</h2>
+            {% if not post.comments.all %}
+            <small>No reviews yet!</small>
+            {% else %}
+                {% for comment in post.comments.all %}
+                    <div class="border my-1 p-2 border">
+                        <a class="mr-2" href="">{{ comment.user }}</a>
+                        <small class="text-muted">{{ comment.date_created|date:"F d, Y" }}</small>
+                        <p class="article-content">{{ comment.feedback }}</p>
+                        <p class="font-weight-bold lead"><i class="fa fa-solid fa-star" id="Icon"></i> {{ comment.star }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

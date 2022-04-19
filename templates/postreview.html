@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    Review Announcement 
+{% endblock title %}
+     
+{% block content %}
+
+<div class="container my-5">
+    <h2 class="display-3 text-center my-5">Give Your Valuable Review</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <article class="media content-section border p-3">
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="article-title">{{ post.title }}</h2>
+                        </div>
+                    </div>
+                <div class="article-metadata mb-3">
+                    <a class="mr-2" href="">{{ post.user }}</a>
+                    <small class="text-muted">{{ post.date_created|date:"F d, Y" }}</small>
+                    <p class="article-content">{{ post.body | slice:":200" }}</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-fluid" id="review_img" src="{{ post.photo.url }}" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <p>Rent To: {{ post.rent_for }} </p>
+                        </div>
+                        <div>
+                            <p>Price: <i class="fas fa-dollar-sign"></i> {{ post.price }} </p> 
+                        </div>
+                        <div>
+                            <p>Location: {{ post.location }} </p> 
+                        </div>
+                    </div>   
+                </div>
+                </div>
+            </article>
+        </div>
+        <div class="col-md-4 border p-3">
+            <form class="form-group" method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Give Review</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

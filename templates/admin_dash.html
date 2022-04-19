@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ sitename }}
+{% endblock title %}
+{% block content %}
+
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-4"> 
+            <div class="card card-body">
+                <h3 class="text-center">Welcome to Dashbord</h3>
+                <hr>
+                <p class="lead text-center">Admin <span class="text-success font-weight-bold">{{request.user}}</span></p>
+                <a class="btn btn-primary mt-5" href="{% url 'PostApprove' %}">APPROVE POST</a>
+            </div>
+        </div>
+        <div class="col-md-8 border">
+            <h2 class="display-4 text-center">Registered Users</h2>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"><a class="btn btn-success" href="{% url 'add_admin' %}"><i class="fas fa-plus"></i> New Admin</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in user %}
+                    <tr>    
+                        <td>{{ user.username }}</td>
+                        <td>{% if user.is_staff == True %}<span class="text-danger font-weight-bold">Admin</span>{% else %} Customer{% endif %}</td>
+                        <td>{{ user.email }}</td>
+                        <td><a class="btn btn-primary" href="{% url 'AdminToUserProfile' user.id %}"><i class="fas fa-user"></i> Visit Profile</a></td> 
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

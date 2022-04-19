@@ -1,0 +1,99 @@
+.navbar{
+  background: #000; 
+}
+
+.navbar .nav-link{
+  font-size: 17px;
+  padding-right: 1em !important; 
+}
+
+.navbar .navbar-toggle{
+    border: 0.1px solid #1a1a1a; 
+}
+
+#footer p{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.hr{
+  width:35%;
+}
+
+.carousel-item {
+  height: 450px; 
+}
+
+.carousel-img-1 {
+  background: url("../img/4.jpg");
+  background-size: cover; 
+}
+
+.carousel-img-2 {
+  background: url("../img/3.jpg");
+  background-size: cover; 
+}
+
+.carousel-img-3 {
+  background: url("../img/two.jpg");
+  background-size: cover; 
+}
+
+#about {
+  background: url("../img/image2.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 300px;
+}
+
+#find{
+  background: url("../img/home.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 300px;
+}
+
+#contact{
+  background: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/contact.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 300px;
+}
+
+#user_img{
+  width: 50px;
+  height: 50px;
+}
+
+#post_img{
+  width: 250px;
+  height: 250px;
+}
+
+#Logo{
+  height: 50px;
+  width: 50px;
+}
+
+#review_img{
+  width: 400px;
+  height: 400px;
+}
+
+.contact-btn a{
+color:black;
+}
+
+.btn:hover{
+  background-color: #00545d;
+}
+.btn:hover a{
+  color:white;
+  text-decoration:none;
+}
+
+#Icon{
+  color: rgb(221, 207, 6);
+}

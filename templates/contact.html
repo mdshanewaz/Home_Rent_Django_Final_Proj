@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ sitename }}
+{% endblock title %}
+
+{% block content %}
+    <section id="contact" class="text-center py-5 text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-light pt-5">Contact Us</h2>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, saepe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="text-center">Please fill out this form to contact us</h4>
+                            <div class="row mt-4">
+                                <div class="col-md-12 form-group">
+                                    <input type="text" name="" value="" placeholder="Name" class="form-control">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" name="" value="" placeholder="Subject" class="form-control">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="email" name="" value="" placeholder="Email" class="form-control">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" name="" value="" placeholder="Phone Number" class="form-control">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <textarea name="name" rows="5" cols="80" class="form-control" placeholder="Message"></textarea>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="submit" name="" value="Send" class="btn btn-dark btn-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Get In Touch</h4>
+                            <p>Feel free to contact us about your interest or if you want to rent your properties to a good hand.</p>
+                            <h4>Address</h4>
+                            <p>Miazi Bari, Maijdee, Noakhali</p>
+                            <h4>Email</h4>
+                            <p>sepnewaz9207@gmail.com</p>
+                            <h4>Phone</h4>
+                            <p class="mb-2">+8801833343200</p>
+                            <p class="">+8801521320540</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

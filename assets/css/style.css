@@ -1,0 +1,7 @@
+.navbar {
+  background: #000; }
+  .navbar .nav-link {
+    font-size: 17px;
+    padding-right: 1em !important; }
+  .navbar .navbar-toggle {
+    border: 0.1px solid #1a1a1a; }

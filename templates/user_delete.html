@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    Delete User
+{% endblock title %}
+     
+{% block content %}
+    <div class="container">
+        <div class="row py-5">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+                {% if request.user.is_staff == True %}
+                <h2 class="text-center">Are you sure you want to delete, User <span class="text-danger">"{{ user.username }}"???</span></h2>
+                <form class="form-group" method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button class="btn btn-danger mt-5" type="submit">DELETE</button>
+                </form>
+                {% else %}
+                <h2 class="text-center">You are not allowed to this page</h2>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

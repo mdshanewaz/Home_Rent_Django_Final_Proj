@@ -1,0 +1,53 @@
+{% load static %}
+
+<nav class="navbar navbar-dark navbar-expand-md">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'HomeView' %}"><img class="img-fluid" id="Logo" src="{% static 'img/logo.png' %}" alt=""></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse py-3" id="menu">
+            <ul class="navbar-nav ml-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if navbar == 'Home' %} active {% endif %}" href="{% url 'HomeView' %}">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if navbar == 'About' %} active {% endif %}" href="{% url 'about' %}">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if navbar == 'Find' %} active {% endif %}" href="{% url 'FindView' %}">FIND NOW</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if navbar == 'Contact' %} active {% endif %}" href="{% url 'contact' %}">CONTACT</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated and request.user.is_staff == False %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Hello, {{request.user}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if navbar == 'Profile' %} active {% endif %}" href="{% url 'Profile' %}">PROFILE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+                </li>
+                {% elif request.user.is_staff == True %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Hello, {{request.user}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if navbar == 'admin_dash' %} active {% endif %}" href="{% url 'admin_dash' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'signup' %}">SIGN UP</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

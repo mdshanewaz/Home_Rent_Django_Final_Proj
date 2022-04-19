@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ sitename }}
+{% endblock title %}
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card my-5 text-center">
+                    <div class="card-header">
+                        <h3 class="text-success">Add New Admin</h3>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <form action="add_admin" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="first_name" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="last_name" placeholder="Last Name" required>
+                            </div>
+                            <div class="form-group"> 
+                                <input class="form-control" type="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">  
+                                <input class="form-control" type="text" name="username" placeholder="User Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password1" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password2" placeholder="Confirm Password" required>
+                            </div> 
+                            <button class="btn btn-outline-dark bg-success text-light" type="submit">Add As Admin</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    {% for message in messages%}
+    <h3> {{message}} </h3>
+    {% endfor %}
+</div>
+
+{% endblock %}
